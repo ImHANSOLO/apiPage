@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>API List</title>
+  </head>
+  <body>
+    <div id="apiList"></div>
+
+    <script>
+      fetch("https://api.publicapis.org/entries")
+        .then((response) => response.json())
+        .then((data) => {
+          const container = document.getElementById("apiList");
+          data.entries.forEach((api) => {
+            const div = document.createElement("div");
+            div.innerHTML = `<h2>${api.API}</h2><p>${api.Description}</p><a href="${api.Link}" target="_blank">API Link</a>`;
+            container.appendChild(div);
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+    </script>
+  </body>
+</html>
